@@ -1,0 +1,21 @@
+Dicom Viewer is een gratis, native DICOM-viewer voor medische beeldbestanden — precies wat je nodig hebt om de scan-cd of USB-stick te openen die je na een ziekenhuisbezoek meekreeg.
+
+🩻 ECHTE DICOM-ONDERSTEUNING
+Directe ondersteuning voor het DICOM-formaat, inclusief gecomprimeerde (JPEG, JPEG Lossless) en ongecomprimeerde beelden, en multi-frame cine-loops zoals hartkatheterisaties.
+
+📽️ CINE-AFSPELEN
+Speel multi-frame series af als video, met instelbare snelheid (5–30 fps), een frame-schuifbalk en stap-voor-stap navigatie.
+
+🎚️ WINDOW/LEVEL-PRESETS
+Voor CT-beelden: snel schakelen tussen Abdomen-, Long-, Bot- en Hersenen-venstering, herberekend uit de originele ruwe pixelwaarden via Rescale Slope/Intercept.
+
+📚 SERIES-NAVIGATOR
+Bestanden uit dezelfde serie (Series Instance UID) worden automatisch gegroepeerd, zodat een hele map met losse slices als één overzichtelijke serie verschijnt.
+
+📤 FRAME EXPORTEREN
+Exporteer elk los frame als PNG of JPEG en deel het direct.
+
+💶 GRATIS
+Geen abonnement, geen betaalmuur. Een vrijwillige fooienpot is beschikbaar voor wie het initiatief wil steunen.
+
+Dicom Viewer stuurt niets naar een server — alles blijft op je eigen toestel.

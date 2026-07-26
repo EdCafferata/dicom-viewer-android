@@ -1,0 +1,21 @@
+Dicom Viewer is a free, native DICOM viewer for medical image files — exactly what you need to open the scan CD or USB stick you were handed after a hospital visit.
+
+🩻 REAL DICOM SUPPORT
+Direct support for the DICOM format, including compressed (JPEG, JPEG Lossless) and uncompressed images, and multi-frame cine loops such as cardiac catheterizations.
+
+📽️ CINE PLAYBACK
+Play multi-frame series like a video, with adjustable speed (5–30 fps), a frame slider, and step-by-step navigation.
+
+🎚️ WINDOW/LEVEL PRESETS
+For CT images: quickly switch between Abdomen, Lung, Bone, and Brain windowing, recomputed from the original raw pixel values via Rescale Slope/Intercept.
+
+📚 SERIES NAVIGATOR
+Files from the same series (Series Instance UID) are grouped automatically, so a whole folder of loose slices shows up as one tidy series.
+
+📤 EXPORT FRAMES
+Export any single frame as PNG or JPEG and share it directly.
+
+💶 FREE
+No subscription, no paywall. A voluntary tip jar is available for anyone who wants to support the project.
+
+Dicom Viewer sends nothing to a server — everything stays on your own device.

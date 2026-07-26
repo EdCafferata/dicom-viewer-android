@@ -1,0 +1,1 @@
+Gratis native DICOM-viewer voor je scan-cd, met cine-afspelen en W/L-presets

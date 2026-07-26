@@ -1,0 +1,1 @@
+Eerste release: DICOM-parser (raw + JPEG/JPEG Lossless), series-navigator, cine-afspelen, Window/Level-presets en frame-export.
