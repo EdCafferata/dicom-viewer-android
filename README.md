@@ -1,5 +1,7 @@
 # Dicom Viewer (Android)
 
+🔒 Laatste security check: 2026-07-28 23:04 CEST
+
 Android port of [Dicom Viewer by The IT Crowd](https://github.com/EdCafferata/DICOM-player), a free native medical DICOM image viewer — series navigator, Window/Level presets, cine playback for multi-frame studies (e.g. cardiac angiography), and frame export.
 
 Native Kotlin + Jetpack Compose, not a cross-platform framework — the DICOM parser (file meta header, explicit/implicit VR, raw and JPEG/JPEG-Lossless pixel data) is a 1:1 port of the iOS app's own hand-written parser, not a third-party DICOM library.
