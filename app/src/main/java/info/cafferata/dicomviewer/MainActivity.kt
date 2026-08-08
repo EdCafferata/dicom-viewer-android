@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.core.content.FileProvider
+import info.cafferata.dicomviewer.billing.TipStore
 import info.cafferata.dicomviewer.model.DicomError
 import info.cafferata.dicomviewer.model.DicomFileInfo
 import info.cafferata.dicomviewer.model.ParsedDicom
@@ -20,8 +21,11 @@ import info.cafferata.dicomviewer.model.SeriesGroup
 import info.cafferata.dicomviewer.parser.DicomParser
 import info.cafferata.dicomviewer.store.DicomFileViewModel
 import info.cafferata.dicomviewer.ui.screens.FileListScreen
+import info.cafferata.dicomviewer.ui.screens.TipJarCoachMark
+import info.cafferata.dicomviewer.ui.screens.TipJarScreen
 import info.cafferata.dicomviewer.ui.screens.ViewerScreen
 import info.cafferata.dicomviewer.ui.theme.DicomViewerTheme
+import kotlinx.coroutines.delay
 import java.io.File
 import java.io.FileOutputStream
 import kotlinx.coroutines.Dispatchers
@@ -49,6 +53,18 @@ private fun DicomViewerApp(viewModel: DicomFileViewModel) {
     var errorMessage by remember { mutableStateOf<String?>(null) }
     val scope = rememberCoroutineScope()
     val context = androidx.compose.ui.platform.LocalContext.current
+
+    val tipStore = remember { TipStore(context) }
+    var showTipJar by remember { mutableStateOf(false) }
+    val prefs = remember { context.getSharedPreferences("dicomviewer", android.content.Context.MODE_PRIVATE) }
+    var showCoachMark by remember { mutableStateOf(false) }
+    androidx.compose.runtime.LaunchedEffect(Unit) {
+        if (!prefs.getBoolean("tipJarCoachMarkShown", false)) {
+            delay(800)
+            showCoachMark = true
+            prefs.edit().putBoolean("tipJarCoachMarkShown", true).apply()
+        }
+    }
 
     fun openFile(file: DicomFileInfo) {
         isParsing = true
@@ -122,6 +138,18 @@ private fun DicomViewerApp(viewModel: DicomFileViewModel) {
             onDismissError = { errorMessage = null },
             onOpenFile = { openFile(it) },
             onOpenSeries = { openSeries(it) },
+            onTipJar = { showTipJar = true },
+        )
+    }
+
+    if (showTipJar) {
+        TipJarScreen(store = tipStore, onDismiss = { showTipJar = false })
+    }
+
+    if (showCoachMark) {
+        TipJarCoachMark(
+            onDonate = { showCoachMark = false; showTipJar = true },
+            onDismiss = { showCoachMark = false },
         )
     }
 }

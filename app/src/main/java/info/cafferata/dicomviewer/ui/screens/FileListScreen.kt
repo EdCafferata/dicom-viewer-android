@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.Description
 import androidx.compose.material.icons.filled.GraphicEq
 import androidx.compose.material.icons.filled.Photo
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Layers
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
@@ -63,6 +64,7 @@ fun FileListScreen(
     onDismissError: () -> Unit,
     onOpenFile: (DicomFileInfo) -> Unit,
     onOpenSeries: (SeriesGroup) -> Unit,
+    onTipJar: () -> Unit = {},
 ) {
     var fileToDelete by remember { mutableStateOf<DicomFileInfo?>(null) }
     var seriesToDelete by remember { mutableStateOf<SeriesGroup?>(null) }
@@ -74,7 +76,7 @@ fun FileListScreen(
 
     Box(modifier = Modifier.fillMaxSize().background(Med.bg)) {
         Column(modifier = Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
-            Header(onImport = { importLauncher.launch(arrayOf("*/*")) })
+            Header(onImport = { importLauncher.launch(arrayOf("*/*")) }, onTipJar = onTipJar)
             MedDivider()
 
             if (viewModel.files.isEmpty()) {
@@ -141,8 +143,9 @@ fun FileListScreen(
 }
 
 @Composable
-private fun Header(onImport: () -> Unit) {
+private fun Header(onImport: () -> Unit, onTipJar: () -> Unit = {}) {
     val med = Med
+    val rood = Color(0xFFCC1A1A)
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -157,6 +160,12 @@ private fun Header(onImport: () -> Unit) {
             Text("Medical Imaging", color = med.textPri, fontSize = 17.sp, fontWeight = FontWeight.Bold)
         }
         Spacer(modifier = Modifier.weight(1f))
+        IconButton(onClick = onTipJar, modifier = Modifier
+            .size(36.dp)
+            .background(rood.copy(alpha = 0.12f), CircleShape)) {
+            Icon(Icons.Filled.Favorite, contentDescription = "Steun de ontwikkelaar", tint = rood, modifier = Modifier.size(14.dp))
+        }
+        Spacer(modifier = Modifier.size(10.dp))
         IconButton(onClick = onImport, modifier = Modifier
             .size(36.dp)
             .background(med.accent.copy(alpha = 0.12f), CircleShape)) {

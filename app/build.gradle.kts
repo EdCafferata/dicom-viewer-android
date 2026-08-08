@@ -15,9 +15,19 @@ android {
         versionName = "1.0.0"
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file(project.findProperty("DICOMVIEWER_STORE_FILE") as String)
+            storePassword = project.findProperty("DICOMVIEWER_STORE_PASSWORD") as String
+            keyAlias = project.findProperty("DICOMVIEWER_KEY_ALIAS") as String
+            keyPassword = project.findProperty("DICOMVIEWER_KEY_PASSWORD") as String
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
         }
     }
 
@@ -42,6 +52,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.10.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0")
     implementation("androidx.core:core-ktx:1.17.0")
+
+    // Play Billing — eenmalige tip-jar-aankopen, zelfde patroon als Duski's abonnement.
+    implementation("com.android.billingclient:billing-ktx:9.1.0")
 
     debugImplementation("androidx.compose.ui:ui-tooling")
 }
