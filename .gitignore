@@ -7,3 +7,13 @@ captures/
 .externalNativeBuild/
 .cxx/
 local.properties
+
+# Signing & secrets — nooit committen
+*.jks
+*.keystore
+keystore.properties
+*.p12
+*.pem
+.env
+.env.*
+!.env.example
