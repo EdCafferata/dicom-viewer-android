@@ -17,10 +17,12 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file(project.findProperty("DICOMVIEWER_STORE_FILE") as String)
-            storePassword = project.findProperty("DICOMVIEWER_STORE_PASSWORD") as String
-            keyAlias = project.findProperty("DICOMVIEWER_KEY_ALIAS") as String
-            keyPassword = project.findProperty("DICOMVIEWER_KEY_PASSWORD") as String
+            if (project.hasProperty("DICOMVIEWER_STORE_FILE")) {
+                storeFile = file(project.findProperty("DICOMVIEWER_STORE_FILE") as String)
+                storePassword = project.findProperty("DICOMVIEWER_STORE_PASSWORD") as String
+                keyAlias = project.findProperty("DICOMVIEWER_KEY_ALIAS") as String
+                keyPassword = project.findProperty("DICOMVIEWER_KEY_PASSWORD") as String
+            }
         }
     }
 
