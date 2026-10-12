@@ -1,6 +1,6 @@
 # Dicom Viewer (Android)
 
-🔒 Laatste security check: 2026-10-10 23:50 CEST
+🔒 Laatste security check: 2026-10-12 03:20 CEST
 
 Android port of [Dicom Viewer by The IT Crowd](https://github.com/EdCafferata/DICOM-player), a free native medical DICOM image viewer — series navigator, Window/Level presets, cine playback for multi-frame studies (e.g. cardiac angiography), and frame export.
 
