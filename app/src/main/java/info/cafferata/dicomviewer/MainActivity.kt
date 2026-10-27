@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
@@ -122,6 +123,14 @@ private fun DicomViewerApp(viewModel: DicomFileViewModel) {
             addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
         }
         context.startActivity(Intent.createChooser(shareIntent, null))
+    }
+
+    // System back button: unwind one level (coach mark → viewer → file list)
+    // instead of finishing the Activity, which otherwise closes the app from
+    // every screen. The file list is the root, so there the handler stays
+    // disabled and back still exits. The Tip Jar is a Dialog and handles its own back.
+    BackHandler(enabled = showCoachMark || parsedDicom != null) {
+        if (showCoachMark) showCoachMark = false else parsedDicom = null
     }
 
     if (parsedDicom != null) {
