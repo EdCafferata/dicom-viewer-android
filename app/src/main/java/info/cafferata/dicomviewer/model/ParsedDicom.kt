@@ -3,6 +3,21 @@ package info.cafferata.dicomviewer.model
 import android.graphics.Bitmap
 import info.cafferata.dicomviewer.parser.PixelRenderer
 
+/**
+ * Pixel spacing in mm. [opDetector] = taken from Imager Pixel Spacing: the size then holds at the
+ * detector plane, not in the patient (with X-ray/angio the real size is slightly smaller).
+ */
+data class PixelSpacing(val rij: Double, val kolom: Double, val opDetector: Boolean) {
+    companion object {
+        fun lees(tekst: String, opDetector: Boolean): PixelSpacing? {
+            val delen = tekst.split("\\").mapNotNull { it.trim().toDoubleOrNull() }
+            val r = delen.firstOrNull()?.takeIf { it > 0 } ?: return null
+            val k = delen.getOrNull(1)?.takeIf { it > 0 } ?: r
+            return PixelSpacing(r, k, opDetector)
+        }
+    }
+}
+
 data class ParsedDicom(
     val patientName: String,
     val modality: String,
@@ -20,6 +35,8 @@ data class ParsedDicom(
     val invert: Boolean = false,
     val rescaleSlope: Double = 1.0,   // (0028,1053) — for HU conversion
     val rescaleIntercept: Double = 0.0, // (0028,1052)
+    /** mm between pixels, for measuring. From Pixel Spacing (0028,0030), else Imager Pixel Spacing (0018,1164). */
+    val pixelSpacing: PixelSpacing? = null,
 ) {
     val kanHervensteren: Boolean get() = rawFrames.isNotEmpty()
 

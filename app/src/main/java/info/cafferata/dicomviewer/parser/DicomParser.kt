@@ -29,6 +29,8 @@ object DicomParser {
         var windowWidth = 0.0
         var rescaleSlope = 1.0
         var rescaleIntercept = 0.0
+        var pixelSpacing: info.cafferata.dicomviewer.model.PixelSpacing? = null
+        var imagerSpacing: info.cafferata.dicomviewer.model.PixelSpacing? = null
         var rawPixels: ByteArray? = null
         var encBlob = ByteArray(0)
         var encapsulated = false
@@ -132,6 +134,8 @@ object DicomParser {
                 }
                 0x0028 to 0x1052 -> rescaleIntercept = r.readAscii(len).toDoubleOrNull() ?: 0.0
                 0x0028 to 0x1053 -> rescaleSlope = r.readAscii(len).toDoubleOrNull() ?: 1.0
+                0x0028 to 0x0030 -> pixelSpacing = info.cafferata.dicomviewer.model.PixelSpacing.lees(r.readAscii(len), false)
+                0x0018 to 0x1164 -> imagerSpacing = info.cafferata.dicomviewer.model.PixelSpacing.lees(r.readAscii(len), true)
                 else -> r.skip(len)
             }
         }
@@ -175,6 +179,7 @@ object DicomParser {
             invert = invert,
             rescaleSlope = rescaleSlope,
             rescaleIntercept = rescaleIntercept,
+            pixelSpacing = pixelSpacing ?: imagerSpacing,
         )
     }
 

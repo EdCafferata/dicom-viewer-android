@@ -37,12 +37,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-private data class CoachTip(val emoji: String, val naam: String, val omschrijving: String, val prijs: String, val kleur: Color)
+private data class CoachTip(val emoji: String, val naam: Int, val omschrijving: Int, val prijs: String, val kleur: Color)
 
 private val coachTips = listOf(
-    CoachTip("☕", "Koffie", "Kleine bijdrage, grote glimlach", "€ 0,99", Color(0xFFB57A3D)),
-    CoachTip("🍕", "Lunch", "Houd de ontwikkelaar goed gevoed", "€ 2,99", Color(0xFFDC4F33)),
-    CoachTip("🍽️", "Diner", "Echt waardevol — hartstikke bedankt!", "€ 9,99", Color(0xFF3DA178)),
+    CoachTip("☕", info.cafferata.dicomviewer.R.string.coffee, info.cafferata.dicomviewer.R.string.coach_small, "€ 0,99", Color(0xFFB57A3D)),
+    CoachTip("🍕", info.cafferata.dicomviewer.R.string.lunch, info.cafferata.dicomviewer.R.string.tip_medium_desc, "€ 2,99", Color(0xFFDC4F33)),
+    CoachTip("🍽️", info.cafferata.dicomviewer.R.string.dinner, info.cafferata.dicomviewer.R.string.coach_large, "€ 9,99", Color(0xFF3DA178)),
 )
 
 /** Eenmalige tutorial-overlay die naar het hartje in de header wijst — Android-equivalent van TipJarCoachMark.swift. */
@@ -97,8 +97,8 @@ fun TipJarCoachMark(onDonate: () -> Unit, onDismiss: () -> Unit) {
                         ) { Text(tip.emoji, fontSize = 22.sp) }
                         Spacer(modifier = Modifier.width(14.dp))
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(tip.naam, color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
-                            Text(tip.omschrijving, color = Color.White.copy(alpha = 0.6f), fontSize = 13.sp)
+                            Text(androidx.compose.ui.res.stringResource(tip.naam), color = Color.White, fontSize = 16.sp, fontWeight = FontWeight.SemiBold)
+                            Text(androidx.compose.ui.res.stringResource(tip.omschrijving), color = Color.White.copy(alpha = 0.6f), fontSize = 13.sp)
                         }
                         Text(
                             tip.prijs,
@@ -109,7 +109,7 @@ fun TipJarCoachMark(onDonate: () -> Unit, onDismiss: () -> Unit) {
                     Spacer(modifier = Modifier.height(12.dp))
                 }
                 Text(
-                    "of tik ergens om te sluiten",
+                    androidx.compose.ui.res.stringResource(info.cafferata.dicomviewer.R.string.coach_close),
                     color = Color.White.copy(alpha = 0.35f), fontSize = 13.sp,
                     modifier = Modifier.padding(top = 4.dp, bottom = 20.dp),
                 )

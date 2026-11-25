@@ -1,0 +1,8 @@
+A completely new look, and lots more:
+• New design with tabs: Scans, Learn and About
+• Measure distances in mm on the image
+• Invert contrast, and view scan details in one place
+• Thumbnails of every scan
+• On tablets: scan list and viewer side by side
+• New Learn section about Window/Level and the types of scans
+• Now available in 12 languages

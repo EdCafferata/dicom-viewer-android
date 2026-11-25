@@ -16,6 +16,15 @@ Native Kotlin + Jetpack Compose, not a cross-platform framework — the DICOM pa
 - Bundled demo DICOM files (cardiac angiography) for trying the app without importing your own scan
 - Import via the system document picker (SAF), recent-files tracking, delete
 
+**New in 1.1.0 (vc5), same as iOS 2.2:**
+- New look (dark, glass-style controls) with tabs Scans · Learn · About
+- Thumbnails per scan (cached in cacheDir/thumbs), short titles for the sample studies
+- Viewer: preset chips, invert contrast, measuring in mm from Pixel Spacing (0028,0030) or Imager Pixel Spacing (0018,1164), info sheet with export
+- Learn screen (Window/Level, scan types, viewer tips) and About screen (privacy, tips, links)
+- Tablets (≥ 840 dp wide): scan list and viewer side by side
+- Tip jar also opens by itself on every 50th launch, only for people who never tipped, with "don't show again"
+- 12 languages (en, nl, de, fr, es, it, pt, ja, ko, zh-Hans, ru, hi). The strings are generated from the iOS String Catalog: `python3 tools/gen_strings_from_ios.py ../DICOM-player/Resources/Localizable.xcstrings app/src/main/res`
+
 **Not yet ported:**
 - **Tip jar** — the iOS app uses StoreKit 2; Android's equivalent is Google Play Billing, which requires product IDs configured in a Google Play Console listing. No Play Console account exists yet for this app (that's a paid, account-creation step only the account owner can do).
 
